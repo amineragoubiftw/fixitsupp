@@ -10,33 +10,223 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedEquipementsRouteImport } from './routes/_authenticated/equipements'
+import { Route as AuthenticatedInterventionsRouteImport } from './routes/_authenticated/interventions'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedParametresRouteImport } from './routes/_authenticated/parametres'
+import { Route as AuthenticatedProfilRouteImport } from './routes/_authenticated/profil'
+import { Route as AuthenticatedRapportsRouteImport } from './routes/_authenticated/rapports'
+import { Route as AuthenticatedTableauDeBordRouteImport } from './routes/_authenticated/tableau-de-bord'
+import { Route as AuthenticatedTechniciensRouteImport } from './routes/_authenticated/techniciens'
+import { Route as AuthenticatedUtilisateursRouteImport } from './routes/_authenticated/utilisateurs'
+import { Route as AuthenticatedTicketsIndexRouteImport } from './routes/_authenticated/tickets.index'
+import { Route as AuthenticatedTicketsIdRouteImport } from './routes/_authenticated/tickets.$id'
+import { Route as AuthenticatedTicketsNouveauRouteImport } from './routes/_authenticated/tickets.nouveau'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedEquipementsRoute =
+  AuthenticatedEquipementsRouteImport.update({
+    id: '/equipements',
+    path: '/equipements',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedInterventionsRoute =
+  AuthenticatedInterventionsRouteImport.update({
+    id: '/interventions',
+    path: '/interventions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedParametresRoute = AuthenticatedParametresRouteImport.update({
+  id: '/parametres',
+  path: '/parametres',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfilRoute = AuthenticatedProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedRapportsRoute = AuthenticatedRapportsRouteImport.update({
+  id: '/rapports',
+  path: '/rapports',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTableauDeBordRoute =
+  AuthenticatedTableauDeBordRouteImport.update({
+    id: '/tableau-de-bord',
+    path: '/tableau-de-bord',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTechniciensRoute =
+  AuthenticatedTechniciensRouteImport.update({
+    id: '/techniciens',
+    path: '/techniciens',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedUtilisateursRoute =
+  AuthenticatedUtilisateursRouteImport.update({
+    id: '/utilisateurs',
+    path: '/utilisateurs',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTicketsIndexRoute =
+  AuthenticatedTicketsIndexRouteImport.update({
+    id: '/tickets/',
+    path: '/tickets/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTicketsIdRoute = AuthenticatedTicketsIdRouteImport.update({
+  id: '/tickets/$id',
+  path: '/tickets/$id',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTicketsNouveauRoute =
+  AuthenticatedTicketsNouveauRouteImport.update({
+    id: '/tickets/nouveau',
+    path: '/tickets/nouveau',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/equipements': typeof AuthenticatedEquipementsRoute
+  '/interventions': typeof AuthenticatedInterventionsRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/parametres': typeof AuthenticatedParametresRoute
+  '/profil': typeof AuthenticatedProfilRoute
+  '/rapports': typeof AuthenticatedRapportsRoute
+  '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/techniciens': typeof AuthenticatedTechniciensRoute
+  '/utilisateurs': typeof AuthenticatedUtilisateursRoute
+  '/tickets/$id': typeof AuthenticatedTicketsIdRoute
+  '/tickets/nouveau': typeof AuthenticatedTicketsNouveauRoute
+  '/tickets/': typeof AuthenticatedTicketsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/equipements': typeof AuthenticatedEquipementsRoute
+  '/interventions': typeof AuthenticatedInterventionsRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/parametres': typeof AuthenticatedParametresRoute
+  '/profil': typeof AuthenticatedProfilRoute
+  '/rapports': typeof AuthenticatedRapportsRoute
+  '/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/techniciens': typeof AuthenticatedTechniciensRoute
+  '/utilisateurs': typeof AuthenticatedUtilisateursRoute
+  '/tickets/$id': typeof AuthenticatedTicketsIdRoute
+  '/tickets/nouveau': typeof AuthenticatedTicketsNouveauRoute
+  '/tickets': typeof AuthenticatedTicketsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/equipements': typeof AuthenticatedEquipementsRoute
+  '/_authenticated/interventions': typeof AuthenticatedInterventionsRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/parametres': typeof AuthenticatedParametresRoute
+  '/_authenticated/profil': typeof AuthenticatedProfilRoute
+  '/_authenticated/rapports': typeof AuthenticatedRapportsRoute
+  '/_authenticated/tableau-de-bord': typeof AuthenticatedTableauDeBordRoute
+  '/_authenticated/techniciens': typeof AuthenticatedTechniciensRoute
+  '/_authenticated/utilisateurs': typeof AuthenticatedUtilisateursRoute
+  '/_authenticated/tickets/$id': typeof AuthenticatedTicketsIdRoute
+  '/_authenticated/tickets/nouveau': typeof AuthenticatedTicketsNouveauRoute
+  '/_authenticated/tickets/': typeof AuthenticatedTicketsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/equipements'
+    | '/interventions'
+    | '/notifications'
+    | '/parametres'
+    | '/profil'
+    | '/rapports'
+    | '/tableau-de-bord'
+    | '/techniciens'
+    | '/utilisateurs'
+    | '/tickets/$id'
+    | '/tickets/nouveau'
+    | '/tickets/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/equipements'
+    | '/interventions'
+    | '/notifications'
+    | '/parametres'
+    | '/profil'
+    | '/rapports'
+    | '/tableau-de-bord'
+    | '/techniciens'
+    | '/utilisateurs'
+    | '/tickets/$id'
+    | '/tickets/nouveau'
+    | '/tickets'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/reset-password'
+    | '/_authenticated/equipements'
+    | '/_authenticated/interventions'
+    | '/_authenticated/notifications'
+    | '/_authenticated/parametres'
+    | '/_authenticated/profil'
+    | '/_authenticated/rapports'
+    | '/_authenticated/tableau-de-bord'
+    | '/_authenticated/techniciens'
+    | '/_authenticated/utilisateurs'
+    | '/_authenticated/tickets/$id'
+    | '/_authenticated/tickets/nouveau'
+    | '/_authenticated/tickets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +238,152 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/equipements': {
+      id: '/_authenticated/equipements'
+      path: '/equipements'
+      fullPath: '/equipements'
+      preLoaderRoute: typeof AuthenticatedEquipementsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/interventions': {
+      id: '/_authenticated/interventions'
+      path: '/interventions'
+      fullPath: '/interventions'
+      preLoaderRoute: typeof AuthenticatedInterventionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/parametres': {
+      id: '/_authenticated/parametres'
+      path: '/parametres'
+      fullPath: '/parametres'
+      preLoaderRoute: typeof AuthenticatedParametresRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profil': {
+      id: '/_authenticated/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof AuthenticatedProfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/rapports': {
+      id: '/_authenticated/rapports'
+      path: '/rapports'
+      fullPath: '/rapports'
+      preLoaderRoute: typeof AuthenticatedRapportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tableau-de-bord': {
+      id: '/_authenticated/tableau-de-bord'
+      path: '/tableau-de-bord'
+      fullPath: '/tableau-de-bord'
+      preLoaderRoute: typeof AuthenticatedTableauDeBordRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/techniciens': {
+      id: '/_authenticated/techniciens'
+      path: '/techniciens'
+      fullPath: '/techniciens'
+      preLoaderRoute: typeof AuthenticatedTechniciensRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/utilisateurs': {
+      id: '/_authenticated/utilisateurs'
+      path: '/utilisateurs'
+      fullPath: '/utilisateurs'
+      preLoaderRoute: typeof AuthenticatedUtilisateursRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tickets/': {
+      id: '/_authenticated/tickets/'
+      path: '/tickets'
+      fullPath: '/tickets/'
+      preLoaderRoute: typeof AuthenticatedTicketsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tickets/$id': {
+      id: '/_authenticated/tickets/$id'
+      path: '/tickets/$id'
+      fullPath: '/tickets/$id'
+      preLoaderRoute: typeof AuthenticatedTicketsIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/tickets/nouveau': {
+      id: '/_authenticated/tickets/nouveau'
+      path: '/tickets/nouveau'
+      fullPath: '/tickets/nouveau'
+      preLoaderRoute: typeof AuthenticatedTicketsNouveauRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedEquipementsRoute: typeof AuthenticatedEquipementsRoute
+  AuthenticatedInterventionsRoute: typeof AuthenticatedInterventionsRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedParametresRoute: typeof AuthenticatedParametresRoute
+  AuthenticatedProfilRoute: typeof AuthenticatedProfilRoute
+  AuthenticatedRapportsRoute: typeof AuthenticatedRapportsRoute
+  AuthenticatedTableauDeBordRoute: typeof AuthenticatedTableauDeBordRoute
+  AuthenticatedTechniciensRoute: typeof AuthenticatedTechniciensRoute
+  AuthenticatedUtilisateursRoute: typeof AuthenticatedUtilisateursRoute
+  AuthenticatedTicketsIdRoute: typeof AuthenticatedTicketsIdRoute
+  AuthenticatedTicketsNouveauRoute: typeof AuthenticatedTicketsNouveauRoute
+  AuthenticatedTicketsIndexRoute: typeof AuthenticatedTicketsIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedEquipementsRoute: AuthenticatedEquipementsRoute,
+  AuthenticatedInterventionsRoute: AuthenticatedInterventionsRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedParametresRoute: AuthenticatedParametresRoute,
+  AuthenticatedProfilRoute: AuthenticatedProfilRoute,
+  AuthenticatedRapportsRoute: AuthenticatedRapportsRoute,
+  AuthenticatedTableauDeBordRoute: AuthenticatedTableauDeBordRoute,
+  AuthenticatedTechniciensRoute: AuthenticatedTechniciensRoute,
+  AuthenticatedUtilisateursRoute: AuthenticatedUtilisateursRoute,
+  AuthenticatedTicketsIdRoute: AuthenticatedTicketsIdRoute,
+  AuthenticatedTicketsNouveauRoute: AuthenticatedTicketsNouveauRoute,
+  AuthenticatedTicketsIndexRoute: AuthenticatedTicketsIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
