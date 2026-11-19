@@ -10,7 +10,7 @@ import { CATEGORY_LABEL, STATUS_LABEL, fmtDate, type Category, type Priority, ty
 import { PageHeader, StatusPill, PriorityTag, Empty } from "@/components/app/ui-bits";
 
 export const Route = createFileRoute("/_authenticated/tickets/")({
-  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s.q === "string" && s.q ? s.q : undefined }),
+  validateSearch: (s: Record<string, unknown>) => ({ q: typeof s["q"] === "string" && s["q"] ? s["q"] : undefined }),
   head: () => ({ meta: [{ title: "Tickets — FixIT" }, { name: "description", content: "Liste et suivi des demandes de support." }, { property: "og:title", content: "Tickets — FixIT" }, { property: "og:description", content: "Liste et suivi des demandes de support." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" }] }),
   component: Tickets,
 });

@@ -23,11 +23,11 @@ function NewTicket() {
   const [busy, setBusy] = useState(false);
   async function submit(e: FormEvent) {
     e.preventDefault();
-    if (!session) return;
+    if (!session) return undefined;
     setBusy(true);
     const { data, error } = await supabase.from("tickets").insert({ ...f, requester_id: session.user.id } as never).select("id").single();
     setBusy(false);
-    if (error) return toast.error("Création impossible : " + error.message);
+    if (error) { toast.error("Création impossible : " + error.message); return; }
     toast.success("Ticket créé.");
     navigate({ to: "/tickets/$id", params: { id: (data as { id: string }).id } });
   }

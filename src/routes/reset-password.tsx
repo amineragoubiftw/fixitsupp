@@ -16,7 +16,7 @@ function ResetPage() {
   const navigate = useNavigate();
   async function save(e: FormEvent) {
     e.preventDefault();
-    if (pw.length < 8) return toast.error("8 caractères minimum.");
+    if (pw.length < 8) { toast.error("8 caractères minimum."); return; }
     const { error } = await supabase.auth.updateUser({ password: pw });
     if (error) toast.error("Lien expiré ou invalide."); else { toast.success("Mot de passe mis à jour."); navigate({ to: "/tableau-de-bord" }); }
   }

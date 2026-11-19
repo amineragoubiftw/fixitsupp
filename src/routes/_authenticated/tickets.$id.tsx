@@ -39,7 +39,7 @@ function TicketDetail() {
           <ol className="space-y-3 border-l border-border pl-4">
             {data.h.map((h) => {
               const r = h as Record<string, unknown>;
-              return <li key={String(r.id)} className="text-sm"><span className="text-xs text-muted-foreground">{fmtDateTime(String(r.created_at))}</span><div>{String(r.note ?? r.action ?? (r.new_status ? STATUS_LABEL[r.new_status as TicketStatus] : "Mise à jour"))}</div></li>;
+              return <li key={String(r["id"])} className="text-sm"><span className="text-xs text-muted-foreground">{fmtDateTime(String(r["created_at"]))}</span><div>{String(r["note"] ?? r["action"] ?? (r["new_status"] ? STATUS_LABEL[r["new_status"] as TicketStatus] : "Mise à jour"))}</div></li>;
             })}
             {data.h.length === 0 && <li className="text-sm text-muted-foreground">Aucun événement.</li>}
           </ol>

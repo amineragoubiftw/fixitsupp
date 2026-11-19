@@ -54,7 +54,7 @@ function AuthPage() {
     await login(e, DEMO_PASSWORD, e);
   }
   async function reset() {
-    if (!email) return toast.error("Saisissez votre adresse e-mail.");
+    if (!email) { toast.error("Saisissez votre adresse e-mail."); return; }
     setBusy("reset");
     const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: `${window.location.origin}/reset-password` });
     setBusy(null);
