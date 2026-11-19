@@ -4,6 +4,7 @@ import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useReveal } from "@/lib/anim";
 import { CATEGORY_LABEL, STATUS_LABEL, fmtDateTime, type Category, type Priority, type TicketStatus } from "@/lib/labels";
+import { TicketActions, TicketComments } from "@/components/app/TicketActions";
 import { PageHeader, StatusPill, PriorityTag, Empty } from "@/components/app/ui-bits";
 
 export const Route = createFileRoute("/_authenticated/tickets/$id")({
@@ -35,11 +36,13 @@ function TicketDetail() {
           <h2 className="mb-2 font-medium">Description</h2>
           <p className="whitespace-pre-wrap text-sm text-muted-foreground">{t.description}</p>
           {t.rejection_reason && <p className="mt-4 rounded-lg border border-danger/30 bg-danger/10 p-3 text-sm">Motif de refus : {t.rejection_reason}</p>}
+          <h2 className="mb-3 mt-8 font-medium">Commentaires</h2>
+          <TicketComments ticketId={t.id} />
           <h2 className="mb-3 mt-8 font-medium">Historique</h2>
           <ol className="space-y-3 border-l border-border pl-4">
             {data.h.map((h) => {
               const r = h as Record<string, unknown>;
-              return <li key={String(r["id"])} className="text-sm"><span className="text-xs text-muted-foreground">{fmtDateTime(String(r["created_at"]))}</span><div>{String(r["note"] ?? r["action"] ?? (r["new_status"] ? STATUS_LABEL[r["new_status"] as TicketStatus] : "Mise à jour"))}</div></li>;
+              return <li key={String(r["id"])} className="text-sm"><span className="text-xs text-muted-foreground">{fmtDateTime(String(r["created_at"]))}</span><div>{String(r["action"])}{r["to_status"] ? ` → ${STATUS_LABEL[r["to_status"] as TicketStatus]}` : ""}{r["details"] ? ` — ${String(r["details"])}` : ""}</div></li>;
             })}
             {data.h.length === 0 && <li className="text-sm text-muted-foreground">Aucun événement.</li>}
           </ol>
@@ -49,7 +52,7 @@ function TicketDetail() {
           <div><div className="eyebrow mb-1">Catégorie</div>{CATEGORY_LABEL[t.category as Category]}</div>
           <div><div className="eyebrow mb-1">Créé le</div>{fmtDateTime(t.created_at)}</div>
           <div><div className="eyebrow mb-1">Résolu le</div>{fmtDateTime(t.resolved_at)}</div>
-          <p className="rounded-lg border border-border bg-muted/40 p-3 text-xs text-muted-foreground">Les actions du workflow (accepter, refuser, résoudre, clôturer) arrivent à l'étape suivante.</p>
+          <div className="border-t border-border pt-4"><div className="eyebrow mb-3">Actions</div><TicketActions t={t} /></div>
         </div>
       </div>
     </div>
