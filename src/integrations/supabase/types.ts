@@ -678,6 +678,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_app_member: { Args: { _user_id: string }; Returns: boolean }
       notify: {
         Args: { _body: string; _link: string; _title: string; _user: string }
         Returns: undefined
