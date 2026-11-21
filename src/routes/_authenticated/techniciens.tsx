@@ -36,7 +36,7 @@ function Page() {
 
   async function toggle(id: string, available: boolean) {
     const { error } = await supabase.from("profiles").update({ available }).eq("id", id);
-    if (error) return toast.error("Mise à jour impossible");
+    if (error) { toast.error("Mise à jour impossible"); return; }
     toast.success(available ? "Technicien disponible" : "Technicien indisponible");
     qc.invalidateQueries({ queryKey: ["technicians"] });
   }

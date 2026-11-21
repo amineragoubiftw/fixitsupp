@@ -34,7 +34,7 @@ function Page() {
     if (!confirm("Supprimer ce rapport d'intervention ?")) return;
     await supabase.from("intervention_materials").delete().eq("intervention_id", id);
     const { error } = await supabase.from("interventions").delete().eq("id", id);
-    if (error) return toast.error("Suppression impossible");
+    if (error) { toast.error("Suppression impossible"); return; }
     toast.success("Intervention supprimée");
     qc.invalidateQueries({ queryKey: ["interventions"] });
   }
@@ -99,10 +99,10 @@ function NewIntervention({ open, onOpenChange }: { open: boolean; onOpenChange: 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     const t = tickets.find((x) => x.id === f.ticket_id);
-    if (!t) return toast.error("Choisissez un ticket");
-    if (!f.diagnosis.trim() || !f.work_done.trim()) return toast.error("Diagnostic et travaux sont obligatoires");
+    if (!t) { toast.error("Choisissez un ticket"); return; }
+    if (!f.diagnosis.trim() || !f.work_done.trim()) { toast.error("Diagnostic et travaux sont obligatoires"); return; }
     const techId = role === "technicien" ? session!.user.id : t.assigned_to;
-    if (!techId) return toast.error("Ce ticket n'a pas de technicien affecté");
+    if (!techId) { toast.error("Ce ticket n'a pas de technicien affecté"); return; }
     setBusy(true);
     const { data, error } = await supabase.from("interventions").insert({
       ticket_id: t.id, technician_id: techId, diagnosis: f.diagnosis, work_done: f.work_done,
@@ -110,7 +110,7 @@ function NewIntervention({ open, onOpenChange }: { open: boolean; onOpenChange: 
       ended_at: f.ended_at ? new Date(f.ended_at).toISOString() : null,
       result: f.result, labor_cost: Number(f.labor_cost) || 0, remarks: f.remarks || null,
     } as never).select("id").single();
-    if (error || !data) { setBusy(false); return toast.error("Enregistrement impossible"); }
+    if (error || !data) { setBusy(false); { toast.error("Enregistrement impossible"); return; } }
     const rows = mats.filter((m) => m.name.trim()).map((m) => ({ ...m, intervention_id: data.id }));
     if (rows.length) await supabase.from("intervention_materials").insert(rows);
     setBusy(false);
