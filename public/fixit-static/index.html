@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FixIT — Support & Maintenance informatique</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="login" class="login">
+  <div class="login-card glow">
+    <div class="brand"><span class="logo">⚙</span> FixIT</div>
+    <h1>Support & maintenance informatique</h1>
+    <p class="muted">Choisissez un compte de démonstration pour commencer.</p>
+    <div class="roles">
+      <button data-role="admin"><b>Administrateur</b><small>Karim Benali</small></button>
+      <button data-role="technicien"><b>Technicien</b><small>Sami Trabelsi</small></button>
+      <button data-role="demandeur"><b>Demandeur</b><small>Leïla Mansour — Enseignante</small></button>
+    </div>
+  </div>
+</div>
+<div id="app" class="app hidden">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">⚙</span> FixIT</div>
+    <nav id="nav"></nav>
+    <button id="logout" class="btn ghost">Se déconnecter</button>
+  </aside>
+  <main>
+    <header class="topbar">
+      <h2 id="title"></h2>
+      <div class="switch">
+        <span class="muted">Rôle :</span>
+        <select id="roleSwitch">
+          <option value="admin">Administrateur</option>
+          <option value="technicien">Technicien</option>
+          <option value="demandeur">Demandeur</option>
+        </select>
+        <span id="who" class="chip"></span>
+      </div>
+    </header>
+    <section id="view" class="view"></section>
+  </main>
+</div>
+<div id="modal" class="modal hidden"><div class="modal-card glow" id="modalBody"></div></div>
+<div id="toast" class="toast hidden"></div>
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
